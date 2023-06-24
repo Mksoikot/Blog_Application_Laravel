@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\PostController;
 use App\Http\Controllers\Admin\HomeController;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,9 +19,12 @@ use App\Http\Controllers\Admin\HomeController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/',[UserController::class,'index']);
+
+
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 
 Route::get('/dashboard', function () {
     return view('dashboard');
