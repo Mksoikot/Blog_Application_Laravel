@@ -20,6 +20,8 @@ use App\Http\Controllers\UserController;
 */
 
 Route::get('/',[UserController::class,'index']);
+Route::get('/post/{id}',[UserController::class,'single_post_view'])->name('single_post_view');
+Route::get('/post/category/{category_id}',[UserController::class,'filterby_category'])->name('filterby_category');
 
 
 // Route::get('/', function () {
