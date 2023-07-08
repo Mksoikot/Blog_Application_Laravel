@@ -26,6 +26,7 @@
                     <tr>
                         <th>SL</th>
                         <th>Title</th>
+                        <th>Sub Title</th>
                         <th>Description</th>
                         <th>Category</th>
                         <th>Thambnil</th>
@@ -38,7 +39,12 @@
                         <tr>
                             <td>{{ ++$key }}</td>
                             <td>{{ $post->title }}</td>
-                            <td>{{ $post->description }}</td>
+                            <td>{{ $post->sub_title }}</td>
+                            <td>
+                                @php
+                                    echo $post->description;
+                                @endphp
+                            </td>
                             <td>{{ $post->category_name }}</td>
                             <td>
                                 <img src="{{ asset('post_thambnil/'.$post->thambnil)}}" alt="" style="width:100px; height:80px;">
@@ -66,9 +72,9 @@
                             </td>
                         </tr>
                         <!-- Post Edit Modal-->
-                        <div class="modal fade" id="{{ 'Edit' . $post->id . 'postModal' }}" tabindex="-1" role="dialog"
+                        <div class="modal" id="{{ 'Edit' . $post->id . 'postModal' }}" tabindex="-1" role="dialog"
                             aria-labelledby="exampleModalLabel" aria-hidden="true">
-                            <div class="modal-dialog" role="document">
+                            <div class="modal-dialog modal-lg" role="document">
                                 <div class="modal-content">
                                     <div class="modal-header">
                                         <h5 class="modal-title" id="exampleModalLabel">{{ $post->name }}</h5>
@@ -91,6 +97,16 @@
                                                 @enderror
                                             </div>
                                             <div class="form-group">
+                                                <label for="Sub_Post_title">Post Sub Title</label>
+                                                <input type="text" class="form-control @error('sub_title') is-invalid @enderror" name="sub_title"
+                                                    id="sub_title" placeholder="Enter Post Sub_title" value="{{ $post->sub_title }}">
+                                                @error('sub_title')
+                                                    <span class="invalid-feedback" role="alert">
+                                                        <strong>{{ $message }}</strong>
+                                                    </span>
+                                                @enderror
+                                            </div>
+                                            <div class="form-group">
                                                 <label for="Post_title">Post Category</label>
                                                 <select class="form-control" name="category_id" id="category_id">
                                                     {{-- <option selected disabled>Select Category</option> --}}
@@ -102,8 +118,8 @@
                                             </div>
                                             <div class="form-group">
                                                 <label for="Category_name">Post Description</label>
-                                                <textarea class="form-control @error('description') is-invalid @enderror" name="description"
-                                                    placeholder="Description" rows="5">{{ $post->description }}</textarea>
+                                                <textarea  class="summernote form-control @error('description') is-invalid @enderror" name="description"
+                                                    placeholder="Description" rows="8">{{ $post->description }}</textarea>
                                                 @error('description')
                                                     <span class="invalid-feedback" role="alert">
                                                         <strong>{{ $message }}</strong>
@@ -137,10 +153,10 @@
         </div>
     </div>
 
-    <!-- Category Modal-->
-    <div class="modal fade" id="AddPostModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    <!-- Add post Modal-->
+    <div class="modal" id="AddPostModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
-        <div class="modal-dialog" role="document">
+        <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">Add Post</h5>
@@ -162,6 +178,16 @@
                             @enderror
                         </div>
                         <div class="form-group">
+                            <label for="Post_title">Post Sub Title</label>
+                            <input type="text" class="form-control @error('sub_title') is-invalid @enderror" name="sub_title"
+                                id="sub_title" placeholder="Enter Post sub_title" value="{{ old('sub_title') }}">
+                            @error('sub_title')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                        </div>
+                        <div class="form-group">
                             <label for="Post_title">Post Category</label>
                             <select class="form-control" name="category_id" id="category_id">
                                 <option selected disabled>Select Category</option>
@@ -171,8 +197,8 @@
                             </select>
                         </div>
                         <div class="form-group">
-                            <label for="Category_name">Post Description</label>
-                            <textarea class="form-control @error('description') is-invalid @enderror" name="description"
+                            <label for="Post description">Post Description</label>
+                            <textarea class="summernote form-control @error('description') is-invalid @enderror" name="description"
                                 placeholder="Description" rows="5">{{ old('description') }}</textarea>
                             @error('description')
                                 <span class="invalid-feedback" role="alert">
@@ -181,7 +207,7 @@
                             @enderror
                         </div>
                         <div class="form-group">
-                            <label for="Post_title">Post Thambnil</label>
+                            <label for="Post_thambnil">Post Thambnil</label>
                             <input type="file" class="form-control-file" name="thambnil"
                                 id="Post_thambnil" placeholder=""">
                         </div>

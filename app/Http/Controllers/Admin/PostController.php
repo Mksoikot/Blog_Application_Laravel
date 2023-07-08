@@ -7,6 +7,7 @@ use App\Models\Category;
 use App\Models\Post;
 use Illuminate\Http\Request;
 use Spatie\Backtrace\File;
+use Intervention\Image\Facades\Image;
 
 class PostController extends Controller
 {
@@ -47,11 +48,13 @@ class PostController extends Controller
     {
         $request->validate([
             'title'=> 'required',
+            'sub_title'=> 'required',
             'category_id'=> 'required',
             'description'=> 'required',
         ]);
         $data = [
             'title'=>$request->title,
+            'sub_title'=>$request->sub_title,
             'category_id'=>$request->category_id,
             'description'=>$request->description,
             'status'=>$request->status
@@ -60,7 +63,14 @@ class PostController extends Controller
             $file = $request->file('thambnil');
             $extantion = $file->getClientOriginalExtension();
             $filename = time().'-'.$extantion;
-            $file->move(public_path('post_thambnil'), $filename);
+
+            //Resize Image Intervantion
+            $thambnil = Image::make($file);
+            $thambnil->resize(600, 360)->save(public_path('post_thambnil/' . $filename));
+
+            // Alternate Image upload
+            // $file->move(public_path('post_thambnil'), $filename);
+
             $data['thambnil']= $filename;
         }
         Post::create($data);
@@ -90,15 +100,18 @@ class PostController extends Controller
     {
         $request->validate([
             'title'=> 'required',
+            'sub_title'=> 'required',
             'category_id'=> 'required',
             'description'=> 'required',
         ]);
         $data = [
             'title'=>$request->title,
+            'sub_title'=>$request->sub_title,
             'category_id'=>$request->category_id,
             'description'=>$request->description,
             'status'=>$request->status
         ];
+// dd($data);
 
         if($request->hasFile('thambnil')){
             // if($request->old_thumb){
@@ -107,7 +120,10 @@ class PostController extends Controller
             $file = $request->file('thambnil');
             $extantion = $file->getClientOriginalExtension();
             $filename = time().'-'.$extantion;
-            $file->move(public_path('post_thambnil'), $filename);
+            //Resize Image Intervantion
+            $thambnil = Image::make($file);
+            $thambnil->resize(600, 360)->save(public_path('post_thambnil/' . $filename));
+            // $file->move(public_path('post_thambnil'), $filename);
             $data['thambnil']= $filename;
         }
 

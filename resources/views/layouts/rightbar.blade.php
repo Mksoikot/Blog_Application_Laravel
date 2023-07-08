@@ -31,17 +31,17 @@
     </div>
 
     <!-- Promotion -->
-    <div class="promotion">
+    {{-- <div class="promotion">
         <img src="{{ asset('user_assets/images/promotion.jpg')}}" class="img-fluid w-100">
         <div class="promotion-content">
             <h5 class="text-white mb-3">Create Stunning Website!!</h5>
             <p class="text-white mb-4">Lorem ipsum dolor sit amet, consectetur sociis. Etiam nunc amet id dignissim. Feugiat id tempor vel sit ornare turpis posuere.</p>
             <a href="https://themefisher.com/" class="btn btn-primary">Get Started</a>
         </div>
-    </div>
+    </div> --}}
 
     <!-- authors -->
-    <div class="widget widget-author">
+    {{-- <div class="widget widget-author">
         <h4 class="widget-title">Authors</h4>
         <div class="media align-items-center">
             <div class="mr-3">
@@ -70,10 +70,10 @@
                 <span>Author &amp; developer of Bexer, Biztrox theme</span>
             </div>
         </div>
-    </div>
+    </div> --}}
     <!-- Search -->
 
-    <div class="widget">
+    {{-- <div class="widget">
         <h4 class="widget-title"><span>Never Miss A News</span></h4>
         <form action="#!" method="post" name="mc-embedded-subscribe-form" target="_blank" class="widget-search">
             <input class="mb-3" id="search-query" name="s" type="search" placeholder="Your Email Address">
@@ -83,47 +83,7 @@
                 <input type="text" name="b_463ee871f45d2d93748e77cad_a0a2c6d074" tabindex="-1">
             </div>
         </form>
-    </div>
-
-    <!-- categories -->
-    <div class="widget widget-categories">
-        <h4 class="widget-title"><span>Categories</span></h4>
-        <ul class="list-unstyled widget-list">
-            <li><a href="tags.html" class="d-flex">Creativity <small class="ml-auto">(4)</small></a></li>
-            <li><a href="tags.html" class="d-flex">Demo <small class="ml-auto">(1)</small></a></li>
-            <li><a href="tags.html" class="d-flex">Elements <small class="ml-auto">(1)</small></a></li>
-            <li><a href="tags.html" class="d-flex">Food <small class="ml-auto">(1)</small></a></li>
-            <li><a href="tags.html" class="d-flex">Microwave <small class="ml-auto">(1)</small></a></li>
-            <li><a href="tags.html" class="d-flex">Natural <small class="ml-auto">(3)</small></a></li>
-            <li><a href="tags.html" class="d-flex">Newyork city <small class="ml-auto">(1)</small></a></li>
-            <li><a href="tags.html" class="d-flex">Nice <small class="ml-auto">(1)</small></a></li>
-            <li><a href="tags.html" class="d-flex">Tech <small class="ml-auto">(2)</small></a></li>
-            <li><a href="tags.html" class="d-flex">Videography <small class="ml-auto">(1)</small></a></li>
-            <li><a href="tags.html" class="d-flex">Vlog <small class="ml-auto">(1)</small></a></li>
-            <li><a href="tags.html" class="d-flex">Wondarland <small class="ml-auto">(1)</small></a></li>
-        </ul>
-    </div>
-    <!-- tags -->
-    <div class="widget">
-        <h4 class="widget-title"><span>Tags</span></h4>
-        <ul class="list-inline widget-list-inline widget-card">
-            <li class="list-inline-item"><a href="tags.html">City</a></li>
-            <li class="list-inline-item"><a href="tags.html">Color</a></li>
-            <li class="list-inline-item"><a href="tags.html">Creative</a></li>
-            <li class="list-inline-item"><a href="tags.html">Decorate</a></li>
-            <li class="list-inline-item"><a href="tags.html">Demo</a></li>
-            <li class="list-inline-item"><a href="tags.html">Elements</a></li>
-            <li class="list-inline-item"><a href="tags.html">Fish</a></li>
-            <li class="list-inline-item"><a href="tags.html">Food</a></li>
-            <li class="list-inline-item"><a href="tags.html">Nice</a></li>
-            <li class="list-inline-item"><a href="tags.html">Recipe</a></li>
-            <li class="list-inline-item"><a href="tags.html">Season</a></li>
-            <li class="list-inline-item"><a href="tags.html">Taste</a></li>
-            <li class="list-inline-item"><a href="tags.html">Tasty</a></li>
-            <li class="list-inline-item"><a href="tags.html">Vlog</a></li>
-            <li class="list-inline-item"><a href="tags.html">Wow</a></li>
-        </ul>
-    </div>
+    </div> --}}
     <!-- recent post -->
     <div class="widget">
         <h4 class="widget-title">Recent Post</h4>
@@ -170,6 +130,24 @@
                 </div>
             </div>
         </article>
+    </div>
+    <!-- categories -->
+    <div class="widget widget-categories">
+        <h4 class="widget-title"><span>Categories</span></h4>
+        <ul class="list-unstyled widget-list">
+            <li><a href="tags.html" class="d-flex">Creativity <small class="ml-auto">(4)</small></a></li>
+            <li><a href="tags.html" class="d-flex">Demo <small class="ml-auto">(1)</small></a></li>
+            <li><a href="tags.html" class="d-flex">Elements <small class="ml-auto">(1)</small></a></li>
+            <li><a href="tags.html" class="d-flex">Food <small class="ml-auto">(1)</small></a></li>
+            <li><a href="tags.html" class="d-flex">Microwave <small class="ml-auto">(1)</small></a></li>
+            <li><a href="tags.html" class="d-flex">Natural <small class="ml-auto">(3)</small></a></li>
+            <li><a href="tags.html" class="d-flex">Newyork city <small class="ml-auto">(1)</small></a></li>
+            <li><a href="tags.html" class="d-flex">Nice <small class="ml-auto">(1)</small></a></li>
+            <li><a href="tags.html" class="d-flex">Tech <small class="ml-auto">(2)</small></a></li>
+            <li><a href="tags.html" class="d-flex">Videography <small class="ml-auto">(1)</small></a></li>
+            <li><a href="tags.html" class="d-flex">Vlog <small class="ml-auto">(1)</small></a></li>
+            <li><a href="tags.html" class="d-flex">Wondarland <small class="ml-auto">(1)</small></a></li>
+        </ul>
     </div>
 
     <!-- Social -->
