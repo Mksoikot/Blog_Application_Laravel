@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
 use Illuminate\View\View;
+use Intervention\Image\Facades\Image;
 
 class RegisteredUserController extends Controller
 {
@@ -34,13 +35,25 @@ class RegisteredUserController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:'.User::class],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
+            'photo' => ['image'],
         ]);
-
-        $user = User::create([
+        $data = [
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
-        ]);
+        ];
+
+        if ($request->hasFile('photo')) {
+            $file = $request->file('photo');
+            $filename = time() . '.' . $file->getClientOriginalExtension();
+            // Resize and save the image
+            $imgfile = Image::make($file);
+            $imgfile->resize(300, 300)->save(public_path('images/user_photos/' . $filename));
+
+            $data['photo'] = $filename;
+        }
+
+        $user = User::create($data);
 
         event(new Registered($user));
 

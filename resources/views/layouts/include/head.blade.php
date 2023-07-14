@@ -26,4 +26,7 @@
     <meta property="og:type" content="website" />
     <meta property="og:url" content="" />
     <meta property="og:updated_time" content="2020-03-15T15:40:24+06:00" />
+     <!-- include summernote css/js -->
+     <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
+     <link href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" rel="stylesheet">
 </head>

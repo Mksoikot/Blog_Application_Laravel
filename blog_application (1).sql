@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 24, 2023 at 07:23 PM
+-- Generation Time: Jul 08, 2023 at 06:59 PM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.2.0
 
@@ -58,6 +58,16 @@ CREATE TABLE `categories` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `categories`
+--
+
+INSERT INTO `categories` (`id`, `name`, `description`, `created_at`, `updated_at`) VALUES
+(1, 'Web Development', 'web development', '2023-07-05 09:57:10', '2023-07-05 11:28:21'),
+(2, 'Programming Tutorial', 'programming tutorial', '2023-07-05 11:19:24', '2023-07-05 11:28:32'),
+(3, 'Apps Development', 'Apps Development', '2023-07-05 11:26:57', '2023-07-05 11:26:57'),
+(4, 'Graphic Design', 'Graphic Design', '2023-07-05 11:28:04', '2023-07-05 11:28:04');
 
 -- --------------------------------------------------------
 
@@ -139,6 +149,7 @@ CREATE TABLE `personal_access_tokens` (
 CREATE TABLE `posts` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `title` varchar(255) NOT NULL,
+  `sub_title` varchar(255) DEFAULT NULL,
   `description` text NOT NULL,
   `thambnil` varchar(255) DEFAULT NULL,
   `category_id` bigint(20) UNSIGNED NOT NULL,
@@ -146,6 +157,17 @@ CREATE TABLE `posts` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `posts`
+--
+
+INSERT INTO `posts` (`id`, `title`, `sub_title`, `description`, `thambnil`, `category_id`, `status`, `created_at`, `updated_at`) VALUES
+(1, 'ami tomay valobasi', 'description description ', 'description description description description', '1688572659-jpg', 2, NULL, '2023-07-04 09:57:39', '2023-07-07 08:55:44'),
+(2, 'amr sonar bangla', 'description description ', 'description description description ', '1688573346-png', 1, 1, '2023-07-05 10:09:06', '2023-07-05 10:09:06'),
+(3, 'Mk Soikot', 'Bhuiyan', 'ai sundor sunil akash ..I Love Allah ,,I love Mohammad Sallahu Alihi Owasallam', '1688742636-png', 1, 1, '2023-07-07 09:10:36', '2023-07-07 09:10:36'),
+(4, 'wetgggggg', 'wettttttttttttttt', 'amr sonar bangla ami tomay valobasi', '1688749684-png', 1, 1, '2023-07-07 11:08:04', '2023-07-08 08:18:11'),
+(5, 'Mk SOikot', 'Junior Software Engineer', '<font color=\"#000000\" style=\"background-color: rgb(255, 255, 0);\"><u><b>I am a student</b></u></font> ..I am from Feni e&nbsp; &nbsp;I am 24 years old', '1688823395-png', 1, 1, '2023-07-08 07:36:36', '2023-07-08 08:18:45');
 
 -- --------------------------------------------------------
 
@@ -159,6 +181,7 @@ CREATE TABLE `users` (
   `email` varchar(255) NOT NULL,
   `email_verified_at` timestamp NULL DEFAULT NULL,
   `password` varchar(255) NOT NULL,
+  `photo` varchar(255) DEFAULT NULL,
   `remember_token` varchar(100) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
@@ -168,8 +191,8 @@ CREATE TABLE `users` (
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'Mohammadul Kader', 'mksoikotbhuiyan117@gmail.com', NULL, '$2y$10$kUGszC/ddhsYTFxt2GV2MeFn7t3zr6rSA36XCu0bsZMux9P3BaPsu', NULL, '2023-06-19 10:27:12', '2023-06-19 10:27:12');
+INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `photo`, `remember_token`, `created_at`, `updated_at`) VALUES
+(1, 'Mohammadul Kader', 'mksoikotbhuiyan117@gmail.com', NULL, '$2y$10$kUGszC/ddhsYTFxt2GV2MeFn7t3zr6rSA36XCu0bsZMux9P3BaPsu', NULL, NULL, '2023-06-19 10:27:12', '2023-06-19 10:27:12');
 
 --
 -- Indexes for dumped tables
@@ -242,7 +265,7 @@ ALTER TABLE `admins`
 -- AUTO_INCREMENT for table `categories`
 --
 ALTER TABLE `categories`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `failed_jobs`
@@ -266,7 +289,7 @@ ALTER TABLE `personal_access_tokens`
 -- AUTO_INCREMENT for table `posts`
 --
 ALTER TABLE `posts`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `users`

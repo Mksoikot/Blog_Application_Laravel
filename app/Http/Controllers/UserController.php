@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Post;
 use App\Models\Category;
+use App\Models\PostComment;
 
 class UserController extends Controller
 {
@@ -32,7 +33,13 @@ class UserController extends Controller
         ->where('posts.id', $id)
         ->first();
 
-        return view('layouts.user.single_post_view', compact('post'));
+        $commentObj = new PostComment();
+        $comments = $commentObj->join('users', 'users.id', '=', 'post_comments.user_id')
+        ->select('post_comments.*', 'users.name as user_name', 'users.photo as user_photo')
+        ->where('post_comments.post_id', $id)
+        ->paginate('3');
+
+        return view('layouts.user.single_post_view', compact('post','comments'));
     }
     public function filterby_category($id){
         $objPost = new Post();
@@ -45,5 +52,17 @@ class UserController extends Controller
         ->get();
 
         return view('layouts.user.filter_by_category', compact('posts'));
+    }
+
+    public function comment_store(Request $request, $id){
+        // dd($request->all());
+        $data =[
+            'post_id' => $id,
+            'user_id' => auth()->user()->id,
+            'comment' => $request->comment,
+        ];
+        PostComment::create($data);
+        return redirect()->back()->with('success','Comment added successfully');
+
     }
 }
