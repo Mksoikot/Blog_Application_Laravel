@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use App\Models\Post;
 use App\Models\Category;
 use App\Models\PostComment;
+use App\Models\Question;
+use App\Models\QuestionAnswer;
 
 class UserController extends Controller
 {
@@ -64,5 +66,74 @@ class UserController extends Controller
         PostComment::create($data);
         return redirect()->back()->with('success','Comment added successfully');
 
+    }
+
+    public function question(){
+
+        $questionObj = new Question();
+
+        $questions = $questionObj->join('categories', 'categories.id', '=', 'questions.category_id')
+        ->join('users', 'users.id', '=', 'questions.user_id')
+        ->select('questions.*','categories.name as category_name', 'users.name as user_name', 'users.photo as user_photo')
+        ->orderby('questions.id', 'desc')
+        ->paginate(5);
+
+        $categories = Category::all();
+        return view('layouts.user.question', compact('categories','questions'));
+    }
+
+    public function question_store(Request $request){
+        // dd($request->all());
+        $request->validate([
+            'category_id' => 'required',
+            'question' => 'required',
+        ]);
+        $data =[
+            'user_id' => auth()->user()->id,
+            'category_id' => $request->category_id,
+            'question' => $request->question,
+        ];
+        Question::create($data);
+        return redirect()->back()->with('success','Question added successfully');
+
+    }
+    public function question_delete($id){
+        Question::find($id)->delete();
+        return redirect()->back()->with('success','Question delete successfully');
+    }
+
+    public function question_answer($id){
+
+        $questionObj = new Question();
+        $answerObj = new QuestionAnswer();
+
+        $question = $questionObj->join('categories', 'categories.id', '=', 'questions.category_id')
+            ->join('users', 'users.id', '=', 'questions.user_id')
+            ->select('questions.*','categories.name as category_name', 'users.name as user_name', 'users.photo as user_photo')
+            ->where('questions.id', $id)
+            ->first();
+
+        $answers = $answerObj->join('users','users.id', '=','question_answers.user_id')
+            ->select('question_answers.*', 'users.name as user_name', 'users.photo as user_photo')
+            ->where('question_answers.question_id', $id)
+            ->orderby('question_answers.id', 'desc')
+            ->get();
+
+        return view('layouts.user.answer_question',compact('question', 'answers'));
+    }
+
+    public function question_answer_store(Request $request, $id){
+        // dd($request->all());
+        $data = [
+            'question_id'=>$id,
+            'user_id'=>auth()->user()->id,
+            'answer'=>$request->answer,
+        ];
+        QuestionAnswer::create($data);
+        return redirect()->back()->with('success','Answer added successfully');
+    }
+    public function question_answer_delete($id){
+        QuestionAnswer::find($id)->delete();
+        return redirect()->back()->with('success','Answer delete successfully');
     }
 }

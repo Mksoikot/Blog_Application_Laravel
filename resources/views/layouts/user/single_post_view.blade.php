@@ -40,7 +40,7 @@
             <div class="media d-block d-sm-flex mb-4 pb-4">
                 <a class="d-inline-block mr-2 mb-3 mb-md-0" href="#">
                     <img src="images/post/user-01.jpg" class="mr-3 rounded-circle" alt="">
-                    @if ($comment->user_photo)
+                @if ($comment->user_photo)
                     <img src="{{asset('images/user_photos/'. $comment->user_photo)}}" alt="user" class="mr-3 rounded-circle" style="height:30px;">
                 @else
                     <img src="{{asset('images/user_photos/default.jpg')}}" alt="user" class="mr-3 rounded-circle" style="height:30px;">

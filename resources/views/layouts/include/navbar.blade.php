@@ -26,7 +26,7 @@
 
 
             <li class="nav-item">
-              <a class="nav-link" href="shop.html">Question & Answer</a>
+              <a class="nav-link" href="{{route('question')}}">Question & Answer</a>
             </li>
           </ul>
         </div>
