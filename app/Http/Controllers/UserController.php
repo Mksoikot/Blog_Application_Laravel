@@ -9,6 +9,7 @@ use App\Models\Category;
 use App\Models\PostComment;
 use App\Models\Question;
 use App\Models\QuestionAnswer;
+use App\Models\QuestionAnswerLike;
 
 class UserController extends Controller
 {
@@ -135,5 +136,24 @@ class UserController extends Controller
     public function question_answer_delete($id){
         QuestionAnswer::find($id)->delete();
         return redirect()->back()->with('success','Answer delete successfully');
+    }
+
+
+    // Question Like and dislike
+
+    public function question_answer_like($id){
+        $data = [
+            'answer_id' => $id,
+            'user_id' => auth()->user()->id
+        ];
+
+        QuestionAnswerLike::create($data);
+
+        return redirect()->back();
+    }
+
+    public function question_answer_unlike($id){
+        QuestionAnswerLike::where('answer_id', $id)->where('user_id', auth()->user()->id)->delete();
+        return redirect()->back();
     }
 }

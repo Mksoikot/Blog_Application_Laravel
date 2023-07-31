@@ -43,7 +43,7 @@
                     <img src="{{asset('images/user_photos/default.jpg')}}" alt="user" class="rounded-circle" style="height:30px;">
                 @endif
             @else
-                    <img src="{{asset('images/user_photos/default.jpg')}}" alt="user" class="rounded-circle" style="height:30px;">
+                   <i class="fas fa-user-circle" style="font-size: 20px;"></i>
             @endauth
                   <i class="ti-angle-down ml-1"></i>
                 </a>

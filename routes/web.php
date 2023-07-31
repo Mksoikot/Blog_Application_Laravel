@@ -32,6 +32,8 @@ Route::group(['middleware' => 'auth'], function() {
     Route::get('/question/answer/{id}', [UserController::class, 'question_answer'])->name('answer');
     Route::post('/question/answer/{id}/store', [UserController::class, 'question_answer_store'])->name('question_answer_store');
     Route::delete('/question/answer/{id}/delete', [UserController::class, 'question_answer_delete'])->name('question_answer_delete');
+    Route::get('/question/answer/{id}/like', [UserController::class, 'question_answer_like'])->name('question_answer_like');
+    Route::get('/question/answer/{id}/unlike', [UserController::class, 'question_answer_unlike'])->name('question_answer_unlike');
 
 });
 // Route::get('/', function () {
