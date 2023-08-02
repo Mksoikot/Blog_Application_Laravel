@@ -39,6 +39,12 @@
                     <i class="fas fa-fw fa-chart-area"></i>
                     <span>Post</span></a>
             </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="{{route('messages.index')}}">
+                    <i class="fas fa-envelope"></i>
+                    <span>Contact Message</span></a>
+            </li>
             <!-- Divider -->
             <hr class="sidebar-divider">
 

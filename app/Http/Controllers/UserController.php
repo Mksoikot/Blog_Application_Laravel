@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Post;
 use App\Models\Category;
+use App\Models\ContactMessage;
 use App\Models\PostComment;
 use App\Models\Question;
 use App\Models\QuestionAnswer;
@@ -155,5 +156,20 @@ class UserController extends Controller
     public function question_answer_unlike($id){
         QuestionAnswerLike::where('answer_id', $id)->where('user_id', auth()->user()->id)->delete();
         return redirect()->back();
+    }
+
+    public function contact(){
+        return view('layouts.user.contact');
+    }
+
+    public function contact_store(Request $request){
+        $data = [
+            'user_id'=>auth()->user()->id,
+            'subject'=>$request->subject,
+            'message'=>$request->message
+        ];
+
+        ContactMessage::create($data);
+        return redirect()->back()->with('success','Send successfully');
     }
 }
