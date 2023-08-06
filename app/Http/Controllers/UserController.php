@@ -21,7 +21,7 @@ class UserController extends Controller
         ->select('posts.*','categories.name as category_name')
         ->where('posts.status',1)
         ->orderby('posts.id', 'desc')
-        ->get();
+        ->paginate(2);
 
         $categories = Category::all();
         // $posts = Post::all()->where('status', 1)->sortByDesc('created_at');
@@ -48,14 +48,20 @@ class UserController extends Controller
     public function filterby_category($id){
         $objPost = new Post();
 
-        $posts = $objPost->join('categories','categories.id','=','posts.category_id')
+        $filterPosts = $objPost->join('categories','categories.id','=','posts.category_id')
         ->select('posts.*','categories.name as category_name')
         ->where('posts.status', 1)
         ->where('posts.category_id', $id)
-        ->orderby('posts.id', 'desc')
-        ->get();
+        ->orderby('posts.id', 'desc')->get();
 
-        return view('layouts.user.filter_by_category', compact('posts'));
+        $posts = $objPost->join('categories', 'categories.id', '=', 'posts.category_id')
+        // ->join('users', 'users.id', '=', 'questions.user_id')
+        ->select('posts.*','categories.name as category_name')
+        ->where('posts.status',1)
+        ->orderby('posts.id', 'desc')
+        ->paginate(5);
+
+        return view('layouts.user.filter_by_category', compact('posts','filterPosts'));
     }
 
     public function comment_store(Request $request, $id){
@@ -73,6 +79,8 @@ class UserController extends Controller
     public function question(){
 
         $questionObj = new Question();
+        $postObj = new Post();
+
 
         $questions = $questionObj->join('categories', 'categories.id', '=', 'questions.category_id')
         ->join('users', 'users.id', '=', 'questions.user_id')
@@ -80,8 +88,14 @@ class UserController extends Controller
         ->orderby('questions.id', 'desc')
         ->paginate(5);
 
+        $posts = $postObj->join('categories', 'categories.id', '=', 'posts.category_id')
+        // ->join('users', 'users.id', '=', 'questions.user_id')
+        ->select('posts.*','categories.name as category_name')
+        ->where('posts.status',1)
+        ->orderby('posts.id', 'desc')
+        ->limit(3);
         $categories = Category::all();
-        return view('layouts.user.question', compact('categories','questions'));
+        return view('layouts.user.question', compact('categories','questions','posts'));
     }
 
     public function question_store(Request $request){

@@ -8,7 +8,7 @@
                 <h2 class="h5 section-title">Showing Items From {{ $posts->first()->category_name }}</h2>
 
 
-@foreach ($posts as $post)
+@foreach ($filterPosts as $post)
 <article class="card mb-4">
     <div class="post-slider">
         <img src="{{ asset('post_thambnil/'.$post->thambnil )}}" class="card-img-top" alt="post-thumb">

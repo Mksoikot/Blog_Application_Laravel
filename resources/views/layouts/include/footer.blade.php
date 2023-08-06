@@ -4,7 +4,7 @@
         stroke-width="2" />
     </svg>
 
-    <div class="instafeed text-center mb-5">
+    {{-- <div class="instafeed text-center mb-5">
         <h2 class="h3 mb-4">INSTAGRAM POST</h2>
 
         <div class="instagram-slider">
@@ -19,7 +19,7 @@
           <div class="instagram-post"><img src="{{ asset('user_assets/images/instagram/3.jpg')}}"></div>
           <div class="instagram-post"><img src="{{ asset('user_assets/images/instagram/4.jpg')}}"></div>
         </div>
-    </div>
+    </div> --}}
 
     <div class="container">
         <div class="row align-items-center">
